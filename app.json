@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "wux-button": "./miniprogram_npm/wux-weapp/button/index",
+    "wux-row": "./miniprogram_npm/wux-weapp/row/index",
+    "wux-col": "./miniprogram_npm/wux-weapp/col/index",
+    "wux-icon": "./miniprogram_npm/wux-weapp/icon/index",
+    "wux-tabs": "./miniprogram_npm/wux-weapp/tabs/index",
+    "wux-tab": "./miniprogram_npm/wux-weapp/tab/index",
+    "wux-badge": "./miniprogram_npm/wux-weapp/badge/index",
+    "wux-tabbar": "./miniprogram_npm/wux-weapp/tabbar/index",
+    "wux-tabbar-item": "./miniprogram_npm/wux-weapp/tabbar-item/index"
+  }
+}

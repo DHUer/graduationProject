@@ -1,0 +1,8 @@
+module.exports = {
+    isLast: function(board, piece) {
+        var n = board.history.length
+        var x = board.history[n - 1].x
+        var y = board.history[n - 1].y
+        return x == piece.x && y == piece.y
+    }
+}

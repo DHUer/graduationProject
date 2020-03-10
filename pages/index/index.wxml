@@ -1,0 +1,79 @@
+<!-- index.wxml -->
+
+<wxs module="board" src="../../FiveStone/board.wxs" />
+<view class="container">
+
+	<view class="outWrapper">
+		<view class="wrapper">
+			<view
+			 class="boardGame"
+			 ontouchstart="onChessBoardTouchStart"
+			 ontouchmove="onChessBoardTouchMove"
+			 ontouchend="onChessBoardTouchEnd"
+			 id="boardGame"
+			 style="width:{{fiveStone.boardWidthPx}}px; height:{{fiveStone.boardWidthPx}}px; "
+			>
+				<view
+				 class="row"
+				 id="row_{{rowIndex}}"
+				 wx:for="{{fiveStone.boardMatrix}}"
+				 wx:for-item="row"
+				 wx:for-index="rowIndex"
+				 wx:key="rowIndex"
+				>
+					<view
+					 class="cell"
+					 id="cell_{{rowIndex}}_{{colIndex}}"
+					 wx:for="{{row}}"
+					 wx:for-index="colIndex"
+					 wx:key="colIndex"
+					 wx:for-item="col"
+					/>
+				</view>
+			</view>
+		</view>
+	</view>
+	<wux-row gutter="3" style="width: {{fiveStone.boardWidthPx}}px">
+		<wux-col span="5">
+			<wux-button block="false" type="dark" bind:click="restart">replay</wux-button>
+		</wux-col>
+		<wux-col span="3.5" push="1">
+			<wux-button block="false" type="dark"><wux-icon type="ios-arrow-round-back" size="36" /></wux-button>
+		</wux-col>
+		<wux-col span="3.5" push="1">
+			<wux-button block="false" type="dark"><wux-icon type="ios-arrow-round-forward" size="36" /></wux-button>
+		</wux-col>
+	</wux-row>
+
+	<view
+	 wx:for="{{fiveStone.history}}"
+	 wx:for-item="piece"
+	 wx:for-index="pieceIndex"
+	 wx:key="pieceIndex"
+	 class="piece {{board.isLast(fiveStone, piece) ? 'last-step': ''}}"
+	 style="width:{{fiveStone.cellSize}}px;height:{{fiveStone.cellSize}}px; border-radius:50%; background-color:{{piece.type == 1 ? 'rgb(43, 63, 80)':'rgb(0, 188, 157)'}}; left:{{piece.absLeft}}px; top:{{piece.absTop}}px;"
+	>{{piece.x}}
+    </view>
+     <wux-tabbar defaultCurrent="1" position="bottom" safeArea>
+            <wux-tabbar-item title="Tab 1">
+                <wux-badge count="1" slot="icon-on">
+                    <wux-icon wux-class="icon" type="ios-home" size="22" />
+                </wux-badge>
+                <wux-badge count="1" slot="icon-off">
+                    <wux-icon wux-class="icon" type="ios-home" size="22" />
+                </wux-badge>
+            </wux-tabbar-item>
+            <wux-tabbar-item title="Tab 2">
+                <wux-badge dot slot="icon-on">
+                    <wux-icon wux-class="icon" type="ios-home" size="22" />
+                </wux-badge>
+                <wux-badge dot slot="icon-off">
+                    <wux-icon wux-class="icon" type="ios-home" size="22" />
+                </wux-badge>
+            </wux-tabbar-item>
+            <wux-tabbar-item title="Tab 3">
+                <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-on" />
+                <wux-icon wux-class="icon" type="ios-home" size="22" slot="icon-off" />
+            </wux-tabbar-item>
+        </wux-tabbar>
+</view>
