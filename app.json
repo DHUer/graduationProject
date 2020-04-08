@@ -1,18 +1,50 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/twoPlayers/twoPlayers"
   ],
+  "tabBar": {
+    "custom": true,
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "image/icon_component.png",
+        "selectedIconPath": "image/icon_component_HL.png",
+        "text": "单人"
+      },
+      {
+        "pagePath": "pages/twoPlayers/twoPlayers",
+        "iconPath": "image/icon_API.png",
+        "selectedIconPath": "image/icon_API_HL.png",
+        "text": "双人"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
-    "wux-button": "./miniprogram_npm/wux-weapp/button/index",
-    "wux-row": "./miniprogram_npm/wux-weapp/row/index",
-    "wux-col": "./miniprogram_npm/wux-weapp/col/index",
-    "wux-icon": "./miniprogram_npm/wux-weapp/icon/index",
-    "wux-tabs": "./miniprogram_npm/wux-weapp/tabs/index",
-    "wux-tab": "./miniprogram_npm/wux-weapp/tab/index",
-    "wux-badge": "./miniprogram_npm/wux-weapp/badge/index",
-    "wux-tabbar": "./miniprogram_npm/wux-weapp/tabbar/index",
-    "wux-tabbar-item": "./miniprogram_npm/wux-weapp/tabbar-item/index"
+    "wux-button": "./dist/button/index",
+    "wux-row": "./dist/row/index",
+    "wux-col": "./dist/col/index",
+    "wux-icon": "./dist/icon/index",
+    "wux-tabs": "./dist/tabs/index",
+    "wux-tab": "./dist/tab/index",
+    "wux-badge": "./dist/badge/index",
+    "wux-tabbar": "./dist/tabbar/index",
+    "wux-tabbar-item": "./dist/tabbar-item/index",
+    "wux-spin": "./dist/spin/index",
+    "wux-progress": "./dist/progress/index",
+    "wux-white-space": "./dist/white-space/index",
+    "wux-toptips": "./dist/toptips/index"
   }
 }

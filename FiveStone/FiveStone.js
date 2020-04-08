@@ -18,8 +18,10 @@ export default class FiveStone {
     wx.getSystemInfo({
       success: res => {
         this.boardWidthPx = res.windowWidth * scaleRatio
-        this.cellSize = res.windowWidth * scaleRatio / cellNumber
+        this.cellSize = res.windowWidth * scaleRatio / cellNumber  
         this.halfCellSize = this.cellSize * 0.5
+        this.offsetLeft = (res.windowWidth - this.boardWidthPx) /2
+        this.offsetTop = 35
         console.log(res.windowWidth)
       }
     })
@@ -35,8 +37,8 @@ export default class FiveStone {
     let offsetX = e.currentTarget["offsetLeft"];
     let offsetY = e.currentTarget["offsetTop"];
     this.pos = {
-      x: Math.floor((x - offsetX + this.halfCellSize) / this.cellSize),
-      y: Math.floor((y - offsetY + this.halfCellSize) / this.cellSize),
+      x: Math.floor((x - 21 + this.halfCellSize) / this.cellSize),
+      y: Math.floor((y - 35 + this.halfCellSize) / this.cellSize),
     }
 
     if (this.pos.x < 0 || this.pos.x > this.rowSize ||
@@ -53,9 +55,9 @@ export default class FiveStone {
     let pos = this.getCellPos(e);
 
     if (!pos) return null;
-    let absLeftPx = this.cellSize * pos.x + e.currentTarget["offsetLeft"] - this.halfCellSize - 1;
-    let absTopPx = this.cellSize * pos.y + e.currentTarget["offsetTop"] - this.halfCellSize - 1;
 
+    let absLeftPx = this.cellSize * pos.x + this.offsetLeft - this.halfCellSize - 1;
+    let absTopPx = this.cellSize * pos.y + this.offsetTop - this.halfCellSize - 1;
 
     return {
       absLeft: absLeftPx,
@@ -79,6 +81,26 @@ export default class FiveStone {
       }
       this.nowStone = -this.nowStone
     }
+  }
+
+  aiStep(cellPos) {
+    if (this.canStep() && this.pieceMatrix[cellPos.x][cellPos.y] == 0) {
+      this.pieceMatrix[cellPos.x][cellPos.y] = this.nowStone
+      let absLeft = cellPos.x * this.cellSize + this.offsetLeft - this.halfCellSize - 1
+      let absTop = cellPos.y * this.cellSize + this.offsetTop - this.halfCellSize - 1
+      this.history.push({
+        absLeft: absLeft,
+        absTop: absTop,
+        type: this.nowStone,
+        x: cellPos.x,
+        y: cellPos.y
+      })
+      if(this.judge()){
+        this._canStep = false
+      }
+      this.nowStone = -this.nowStone
+    }
+
   }
 
   canStep() {
@@ -141,5 +163,15 @@ export default class FiveStone {
       let n = this.history.length
       console.log('xxx')
       return this.history[n - 1].x == piece.x && this.history[n - 1].y == piece.y
+  }
+
+  takeBack(){
+    let lastStone = this.history.pop()
+    this.nowStone = -this.nowStone
+    this.pieceMatrix[lastStone.x][lastStone.y] = Stone.none
+    return {
+      x: lastStone.x,
+      y: lastStone.y
+    }
   }
 }

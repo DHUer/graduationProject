@@ -9,15 +9,12 @@
   
     <wux-row style="width: {{fiveStone.boardWidthPx}}px">
       <!-- 加载提示 -->
-      <wux-col span="1">
-        <wux-icon type="{{connectionLost ? 'ios-close-circle-outline':'ios-checkmark-circle-outline'}}" color="{{connectionLost? '#f50' :'#87d068'}}" size="20" />
+      <wux-col span="6">
+        <!-- 展示用户的头像 -->
       </wux-col>
-      <wux-col span="3">
-        <view class="info-text" wx:if="{{connectionLost}}">disconnected</view>
-        <view wx:else class="info-text">connected</view>
-      </wux-col>
-      <wux-col span="8" >
-          <view class="info-text">delay: {{delay}}, online: {{onlineSize}} </view>
+
+      <wux-col span="6" >
+        <!-- 展示用户的头像 -->
       </wux-col>
     </wux-row>
 
@@ -43,6 +40,9 @@
       <wux-button block="false" type="dark">
         <wux-icon type="ios-arrow-round-forward" size="36" /></wux-button>
     </wux-col>
+  </wux-row>
+  <wux-row gutter="3" style="width: {{fiveStone.boardWidthPx}}px">
+    <wux-button block="false" type="dark" open-type="share">Invite Others</wux-button>
   </wux-row>
 </wux-spin>
   <view wx:for="{{fiveStone.history}}" wx:for-item="piece" wx:for-index="pieceIndex" wx:key="pieceIndex" class="piece {{board.isLast(fiveStone, piece) ? 'last-step': ''}}" style="width:{{fiveStone.cellSize}}px;height:{{fiveStone.cellSize}}px; border-radius:50%; background-color:{{piece.type == 1 ? 'rgb(43, 63, 80)':'rgb(0, 188, 157)'}}; left:{{piece.absLeft}}px; top:{{piece.absTop}}px;">
