@@ -1,8 +1,8 @@
 
 export const URL = {
-  urlGetUid: "https://wling.wang:443/getOpenID",
-  urlAI: "https://wling.wang:443/AI",
-  urlWebSocket: `wss://wling.wang:443?id=${wx.getStorageSync("session_key")}`
+  urlGetUid: "https://localhost:443/getOpenID",
+  urlAI: "https://localhost:443/AI",
+  urlWebSocket: `wss://localhost:443?id=${wx.getStorageSync("session_key")}`
 }
 
 export const AIPharse = {

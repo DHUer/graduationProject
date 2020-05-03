@@ -38,7 +38,7 @@ export default class FiveStone {
     let offsetY = e.currentTarget["offsetTop"];
     this.pos = {
       x: Math.floor((x - 21 + this.halfCellSize) / this.cellSize),
-      y: Math.floor((y - 35 + this.halfCellSize) / this.cellSize),
+      y: Math.floor((y - 39 + this.halfCellSize) / this.cellSize),
     }
 
     if (this.pos.x < 0 || this.pos.x > this.rowSize ||

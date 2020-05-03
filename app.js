@@ -21,6 +21,21 @@ App({
           }
       }
     })
+
+    wx.getSetting({
+      success: res=> {
+        if(res.authSetting['socpe.userInfo']) {
+          wx.getUserInfo({
+            success: res=> {
+              this.globalData.userInfo = res.userInfo
+              if(this.userInfoReadyCallback) {
+                this.userInfoReadyCallback(res)
+              }
+            }
+          })
+        }
+      }
+    })
   },
   onShow: function (res) {
     wx.getShareInfo({

@@ -49,7 +49,7 @@ import io from '../../utils/wxapp-socket.js'
       
       this.socketStart()
       wx.showShareMenu({
-        withShareTicket: false
+        withShareTicket: true
       })
     },
     onShow: function () {
@@ -116,27 +116,6 @@ import io from '../../utils/wxapp-socket.js'
       this.socket.on('message', data => {
         console.log(data)
       })
-    },
-    onShareAppMessage: function(ops) {
-      return {
-        title: "邀请好友",
-        path: `pages/twoPlayers/twoPlayers`,
-        success: function(res) {
-          var shareTickets = res.shareTickets
-          wx.getShareInfo({
-            shareTicket: shareTickets[0],
-            success: function(res) {
-              console.log(res)
-            },
-            fail: function(res) {
-              console.log(res)
-            }
-          })
-        },
-        fail: function(res) {
-          console.log(JSON.stringify(res));
-        }
-      }
     }
   })
 })()

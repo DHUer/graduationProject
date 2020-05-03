@@ -6,22 +6,22 @@
   <!-- <wux-progress status="progress" percent="{{precent}}"/> -->
   <wux-white-space />
 
-  
-    <wux-row style="width: {{fiveStone.boardWidthPx}}px">
-      <!-- 加载提示 -->
-      <wux-col span="1">
-        <wux-icon type="{{connectionLost ? 'ios-close-circle-outline':'ios-checkmark-circle-outline'}}" color="{{connectionLost? '#f50' :'#87d068'}}" size="20" />
-      </wux-col>
-      <wux-col span="3">
-        <view class="info-text" wx:if="{{connectionLost}}">disconnected</view>
-        <view wx:else class="info-text">connected</view>
-      </wux-col>
-      <wux-col span="8" >
-          <view class="info-text">delay: {{delay}}, online: {{onlineSize}} </view>
-      </wux-col>
-    </wux-row>
-
-  <wux-spin nested spinning="{{spinning}}" tip="" >
+<!-- <view style="border: 2px solid #f1f1f1;width: {{fiveStone.boardWidthPx - 20}}px; margin-bottom: 20px; padding: 10px;"> -->
+  <wux-row style="width: {{fiveStone.boardWidthPx}}px">
+    <!-- 加载提示 -->
+    <wux-col span="1">
+      <wux-icon type="{{connectionLost ? 'ios-close-circle-outline':'ios-checkmark-circle-outline'}}" color="{{connectionLost? '#f50' :'#87d068'}}" size="20" />
+    </wux-col>
+    <wux-col span="3">
+      <view class="info-text" wx:if="{{connectionLost}}">disconnected</view>
+      <view wx:else class="info-text">connected</view>
+    </wux-col>
+    <wux-col span="8" >
+      <view class="info-text" style="float: right">delay: {{delay}}, online: {{onlineSize}} </view>
+    </wux-col>
+  </wux-row>
+<!-- </view> -->
+  <wux-spin nested spinning="{{spinning}}" tip="">
 
     <view class="boardGame" ontouchstart="onChessBoardTouchStart" ontouchmove="onChessBoardTouchMove" ontouchend="onChessBoardTouchEnd" id="boardGame" style="width:{{fiveStone.boardWidthPx}}px; height:{{fiveStone.boardWidthPx}}px; ">
       <view class="row" id="row_{{rowIndex}}" wx:for="{{fiveStone.boardMatrix}}" wx:for-item="row" wx:for-index="rowIndex" wx:key="rowIndex">
@@ -29,23 +29,38 @@
       </view>
 
     </view>
-  
-  <!-- ... -->
-  <wux-row gutter="3" style="width: {{fiveStone.boardWidthPx}}px">
-    <wux-col span="5">
-      <wux-button block="false" type="dark" bindtap="restart">Replay</wux-button>
+
+    <!-- ... -->
+    <wux-row gutter="3" style="width: {{fiveStone.boardWidthPx}}px">
+      <wux-col span="5">
+        <wux-button block="false" type="dark" bindtap="restart">Replay</wux-button>
+      </wux-col>
+      <wux-col span="3.5" push="1">
+        <wux-button block="false" type="dark" bind:click="takeBack">
+          <wux-icon type="ios-arrow-round-back" size="36" /></wux-button>
+      </wux-col>
+      <wux-col span="3.5" push="1">
+        <wux-button block="false" type="dark">
+          <wux-icon type="ios-arrow-round-forward" size="36" /></wux-button>
+      </wux-col>
+    </wux-row>
+  </wux-spin>
+  <view wx:for="{{fiveStone.history}}" wx:for-item="piece" wx:for-index="pieceIndex" wx:key="pieceIndex" class="piece {{board.isLast(fiveStone, piece) ? 'last-step': ''}}" style="width:{{fiveStone.cellSize}}px;height:{{fiveStone.cellSize}}px; border-radius:50%; background-color:{{piece.type == 1 ? 'rgb(43, 63, 80)':'rgb(0, 188, 157)'}}; left:{{piece.absLeft}}px; top:{{piece.absTop}}px;">
+  </view>
+      <wux-row style="width: {{fiveStone.boardWidthPx}}px; margin-top: 200px; border: 4px ridge #f1f1f1;">
+    <!--头像和昵称-->
+    <wux-col span="4">
+      <view class='headView'>
+        <open-data class='icon' mode="aspectFit" type="userAvatarUrl"></open-data>
+        <view class='icon'></view>
+      </view>
     </wux-col>
-    <wux-col span="3.5" push="1">
-      <wux-button block="false" type="dark" bind:click="takeBack">
-        <wux-icon type="ios-arrow-round-back" size="36" /></wux-button>
-    </wux-col>
-    <wux-col span="3.5" push="1">
-      <wux-button block="false" type="dark">
-        <wux-icon type="ios-arrow-round-forward" size="36" /></wux-button>
+    <wux-col span="8">
+    <view style="float: right; margin-right: 10px;">
+      <view class="info-text">游戏次数：8次</view>
+      <view class="info-text">游戏时间长：20h</view>
+      <view class="info-text">胜利次数：0次</view>
+      </view>
     </wux-col>
   </wux-row>
-</wux-spin>
-  <view wx:for="{{fiveStone.history}}" wx:for-item="piece" wx:for-index="pieceIndex" wx:key="pieceIndex" class="piece {{board.isLast(fiveStone, piece) ? 'last-step': ''}}" style="width:{{fiveStone.cellSize}}px;height:{{fiveStone.cellSize}}px; border-radius:50%; background-color:{{piece.type == 1 ? 'rgb(43, 63, 80)':'rgb(0, 188, 157)'}}; left:{{piece.absLeft}}px; top:{{piece.absTop}}px;">
-
-  </view>
 </view>

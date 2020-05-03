@@ -66,3 +66,25 @@
   padding-bottom: 3px; 
   font-size: 12px
 }
+
+.headView {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  height:100rpx;
+  width:100rpx;
+  padding: 10rpx;
+  position:relative;
+  }
+ 
+/**
+*open-data 的头像做不了圆角
+*这里是覆盖一个镂空的view在上面 镂空view的边界做成与周围背景颜色一样 做了伪圆角
+**/
+.headView .icon {
+    position: absolute;
+    height: 80rpx;
+    width: 80rpx;
+    border-radius: 50%;
+    border: 18rpx solid #f1f1f1;
+}
